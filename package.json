@@ -1,0 +1,32 @@
+{
+  "name": "image-file-to-base64-exif",
+  "version": "0.0.1",
+  "description": "Auto rotate images with EXIF metadata for browsers",
+  "main": "bundle.js",
+  "scripts": {
+    "build": "rollup -c",
+    "develop": "nodemon --watch src --exec npm run build",
+    "test": "echo \"No test. No fear. *joking it is on @TODO [maybe]\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/hadrons/image-file-to-base64-exif.git"
+  },
+  "keywords": [
+    "exif",
+    "photo",
+    "image",
+    "rotate",
+    "browser",
+    "orientation"
+  ],
+  "author": "Iguatemi Garin",
+  "license": "MIT",
+  "dependencies": {
+    "exif-js": "^2.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0",
+    "rollup": "^0.45.2"
+  }
+}
