@@ -37,8 +37,9 @@ const quality = 0.8
 const fileInput = document.createElement('input')
 fileInput.type = 'file'
 fileInput.accept = 'image/*'
-fileInput.addEventListener('change', this.handleChange)
+fileInput.addEventListener('change', handleChange)
 document.body.appendChild(fileInput)
+
 function handleChange () {
     imageFileToBase64(fileInput.files[0], maxWidth, maxHeight, quality)
         .then(makeThumbnail)
