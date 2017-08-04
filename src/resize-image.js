@@ -1,24 +1,26 @@
 import makeImage from './make-image'
 
-export default (maxWidth, maxHeight, quality) => base64 => {
-  return makeImage(base64)
-    .then(resize)
+export default function (maxWidth, maxHeight, quality) {
+  return function (base64) {
+    return makeImage(base64)
+      .then(resize)
 
-  function resize (image) {
-    maxWidth = maxWidth || image.width
-    maxHeight = maxHeight || image.height
-    quality = quality || 1
+    function resize (image) {
+      maxWidth = maxWidth || image.width
+      maxHeight = maxHeight || image.height
+      quality = quality || 1
 
-    const scale = getNewScale(image, maxWidth, maxHeight)
-    const scaledWidth = image.width / scale
-    const scaledHeight = image.height / scale
+      const scale = getNewScale(image, maxWidth, maxHeight)
+      const scaledWidth = image.width / scale
+      const scaledHeight = image.height / scale
 
-    const canvas = document.createElement('canvas')
-    const context = canvas.getContext('2d')
-    canvas.width = scaledWidth
-    canvas.height = scaledHeight
-    context.drawImage(image, 0, 0, scaledWidth, scaledHeight)
-    return canvas.toDataURL('image/jpeg', quality)
+      const canvas = document.createElement('canvas')
+      const context = canvas.getContext('2d')
+      canvas.width = scaledWidth
+      canvas.height = scaledHeight
+      context.drawImage(image, 0, 0, scaledWidth, scaledHeight)
+      return canvas.toDataURL('image/jpeg', quality)
+    }
   }
 }
 
