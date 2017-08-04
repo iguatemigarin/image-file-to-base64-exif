@@ -2,13 +2,15 @@
 
 This is a utility function to get a base64 encoded image from a DOM File.
 
-The returned image is **always** a image/jpeg. This means that if you try to read an image/png with transparency, the transparency will become black.
+The returned image is **always** an image/jpeg. This means that if you try to read an image/png with transparency, the transparency will become black.
 
 *Obvioulsy, it is just for browser usage and the File must be of an image type.*
 
 ## Installation
 
-```npm install --save image-file-to-base64-exif```
+```
+$ npm install --save image-file-to-base64-exif
+```
 
 ## Usage
 
@@ -21,6 +23,32 @@ imageFileToBase64(file)
     .then(function (base64) {
         // ...
     })
+```
+
+### Example
+
+```javascript
+import imageFileToBase64 from 'image-file-to-base64-exif'
+
+const maxWidth = 200
+const maxHeight = 200
+const quality = 0.8
+
+const fileInput = document.createElement('input')
+fileInput.type = 'file'
+fileInput.accept = 'image/*'
+fileInput.addEventListener('change', this.handleChange)
+document.body.appendChild(fileInput)
+function handleChange () {
+    imageFileToBase64(fileInput.files[0], maxWidth, maxHeight, quality)
+        .then(makeThumbnail)
+}
+
+function makeThumbnail (base64) {
+    const image = document.createElement('img')
+    image.src = base64
+    document.body.appendChild(image)
+}
 ```
 
 ## API
