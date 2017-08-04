@@ -25,6 +25,8 @@ imageFileToBase64(file)
     })
 ```
 
+### [Demo](https://repl.it/Jw7L/5)
+
 ### Example
 
 ```javascript
