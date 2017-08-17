@@ -10,7 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com/hadrons/image-file-to-base64-exif.git"
+    "url": "https://github.com/hadrons/image-file-to-base64-exif"
+  },
+  "bugs": {
+    "url": "https://github.com/hadrons/image-file-to-base64-exif/issues"
   },
   "keywords": [
     "exif",
