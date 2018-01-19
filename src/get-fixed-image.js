@@ -21,12 +21,20 @@ export default function (file) {
       const orientation = EXIF.getTag(file, "Orientation")
 
       const canvas = document.createElement('canvas')
-      canvas.width = rawImage.width
-      canvas.height = rawImage.height
+      let canvasWidth = rawImage.width
+      let canvasHeight = rawImage.height
+      if (orientation >= 5) {
+        canvasWidth = rawImage.height
+        canvasHeight = rawImage.width
+      }
+
+      canvas.width = canvasWidth
+      canvas.height = canvasHeight
+
       document.body.appendChild(canvas)
 
       const ctx = canvas.getContext('2d')
-      ctx.translate(rawImage.width * 0.5, rawImage.height * 0.5)
+      ctx.translate(canvasWidth * 0.5, canvasHeight * 0.5)
 
       switch(orientation) {
         case 2:
