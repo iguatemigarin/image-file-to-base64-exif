@@ -21,59 +21,66 @@ export default function (file) {
       const orientation = EXIF.getTag(file, "Orientation")
 
       const canvas = document.createElement('canvas')
-      let canvasWidth = rawImage.width
-      let canvasHeight = rawImage.height
-      if (orientation >= 5) {
-        canvasWidth = rawImage.height
-        canvasHeight = rawImage.width
-      }
+      const fixedDimensions = getFixedCanvasDimensions(rawImage, orientation)
 
-      canvas.width = canvasWidth
-      canvas.height = canvasHeight
-
-      document.body.appendChild(canvas)
+      canvas.width = fixedDimensions.width
+      canvas.height = fixedDimensions.height
 
       const ctx = canvas.getContext('2d')
-      ctx.translate(canvasWidth * 0.5, canvasHeight * 0.5)
-
-      switch(orientation) {
-        case 2:
-        // horizontal flip
-        ctx.scale(-1, 1)
-        break
-        case 3:
-        // 180° rotate left
-        ctx.rotate(Math.PI)
-        break
-        case 4:
-        // vertical flip
-        ctx.scale(1, -1)
-        break
-        case 5:
-        // vertical flip + 90 rotate right
-        ctx.rotate(0.5 * Math.PI)
-        ctx.scale(1, -1)
-        break
-        case 6:
-        // 90° rotate right
-        ctx.rotate(0.5 * Math.PI)
-        break
-        case 7:
-        // horizontal flip + 90 rotate right
-        ctx.rotate(0.5 * Math.PI)
-        ctx.scale(-1, 1)
-        break
-        case 8:
-        // 90° rotate left
-        ctx.rotate(-0.5 * Math.PI)
-        break
-      }
-
+      ctx.translate(canvas.width * 0.5, canvas.height * 0.5)
+      handleRotationAndFlip(ctx, orientation)
       ctx.translate(-rawImage.width * 0.5, -rawImage.height * 0.5)
       ctx.drawImage(rawImage, 0, 0)
-      const fixedImage = canvas.toDataURL()
-      canvas.remove()
-      return fixedImage
+      return canvas.toDataURL()
     }
+  }
+}
+
+function getFixedCanvasDimensions (rawImage, orientation) {
+  if (orientation >= 5) {
+    return {
+      width: rawImage.height,
+      height: rawImage.width
+    }
+  }
+
+  return {
+    width: rawImage.width,
+    height: rawImage.height
+  }
+}
+
+function handleRotationAndFlip(ctx, orientation) {
+  switch(orientation) {
+    case 2:
+    // horizontal flip
+    ctx.scale(-1, 1)
+    break
+    case 3:
+    // 180° rotate left
+    ctx.rotate(Math.PI)
+    break
+    case 4:
+    // vertical flip
+    ctx.scale(1, -1)
+    break
+    case 5:
+    // vertical flip + 90 rotate right
+    ctx.rotate(0.5 * Math.PI)
+    ctx.scale(1, -1)
+    break
+    case 6:
+    // 90° rotate right
+    ctx.rotate(0.5 * Math.PI)
+    break
+    case 7:
+    // horizontal flip + 90 rotate right
+    ctx.rotate(0.5 * Math.PI)
+    ctx.scale(-1, 1)
+    break
+    case 8:
+    // 90° rotate left
+    ctx.rotate(-0.5 * Math.PI)
+    break
   }
 }
