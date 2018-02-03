@@ -25,7 +25,7 @@ imageFileToBase64(file)
     })
 ```
 
-### [Demo](https://repl.it/Jw7L/5)
+### [Demo](https://repl.it/@iguatemicanfield/image-file-to-base64-exif)
 
 ### Example
 
