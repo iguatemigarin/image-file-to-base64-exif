@@ -1,6 +1,6 @@
 {
   "name": "image-file-to-base64-exif",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Auto rotate images with EXIF metadata for browsers",
   "main": "dist/bundle.js",
   "scripts": {
