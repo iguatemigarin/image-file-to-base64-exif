@@ -2,7 +2,7 @@
   "name": "image-file-to-base64-exif",
   "version": "1.0.4",
   "description": "Auto rotate images with EXIF metadata for browsers",
-  "main": "bundle.js",
+  "main": "dist/bundle.js",
   "scripts": {
     "build": "rollup -c",
     "develop": "nodemon --watch src --exec npm run build",
