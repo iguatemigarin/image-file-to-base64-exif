@@ -1,6 +1,6 @@
 {
   "name": "image-file-to-base64-exif",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Auto rotate images with EXIF metadata for browsers",
   "main": "bundle.js",
   "scripts": {
@@ -26,10 +26,10 @@
   "author": "Iguatemi Garin",
   "license": "MIT",
   "dependencies": {
-    "exif-js": "^2.2.1"
+    "exif-js": "^2.3.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.4",
+    "nodemon": "2.0.20",
     "rollup": "^0.45.2"
   }
 }
