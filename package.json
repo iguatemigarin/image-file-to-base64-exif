@@ -30,6 +30,6 @@
   },
   "devDependencies": {
     "nodemon": "2.0.20",
-    "rollup": "^0.45.2"
+    "rollup": "^3.29.5"
   }
 }
